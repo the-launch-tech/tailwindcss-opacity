@@ -1,0 +1,35 @@
+{
+  "name": "tailwindcss-opacity",
+  "version": "1.0.0",
+  "description": "Opacity plugin for TailwindCSS",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "export NODE_ENV=development && webpack --config webpack.config.js --watch",
+    "prod": "export NODE_ENV=production && webpack --config webpack.config.prod.js"
+  },
+  "keywords": [
+    "TailwindCSS",
+    "Tailwind",
+    "CSS",
+    "SCSS",
+    "PostCSS",
+    "NodeJS",
+    "Plugin",
+    "TailwindCSS",
+    "Plugin"
+  ],
+  "author": "Daniel Griffiths",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "terser-webpack-plugin": "^2.3.5",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}
