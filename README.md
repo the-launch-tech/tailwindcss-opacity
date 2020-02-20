@@ -17,7 +17,10 @@ In tailwind.config.js
 
 {
   plugins: [
-    require('tailwindcss-opacity')([0.1, 0.25, 0.3, 0.45, 0.562, 0.75, 0.9])
+    require('tailwindcss-opacity')({
+      opacities: [0.1, 0.2, 0.4, 0.65, 0.85], // Opacities applied to theme('colors')
+      variants: ['hover', 'focus', 'active', 'visited', 'disabled'], // Variants to apply opacities to
+    })
   ]
 }
 ```
