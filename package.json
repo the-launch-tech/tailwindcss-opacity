@@ -7,6 +7,10 @@
     "dev": "export NODE_ENV=development && webpack --config webpack.config.js --watch",
     "prod": "export NODE_ENV=production && webpack --config webpack.config.prod.js"
   },
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map"
+  ],
   "keywords": [
     "TailwindCSS",
     "Tailwind",

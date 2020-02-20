@@ -1,3 +1,10 @@
 /node_modules
 package-lock.json
 .env
+.babelrc
+.gitignore
+index.js
+LICENCE.md
+README.md
+webpack.config.js
+webpack.config.prod.js
