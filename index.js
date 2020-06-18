@@ -1,91 +1,61 @@
-module.exports = function({ opacities, variants }) {
-  var defaultOpacities = [0.1, 0.25, 0.5, 0.8]
-  var targetGroups = [
-    { label: 'text', attr: 'color' },
-    { label: 'border', attr: 'borderColor' },
-    { label: 'bg', attr: 'backgroundColor' },
-  ]
-
-  function flattenUtility(array) {
-    var flattenUtility = arr => {
-      return arr.reduce((a, b) => a.concat(Array.isArray(b) ? flattenUtility(b) : b), [])
-    }
-    return flattenUtility(array)
+'use strict'
+var __spreadArrays =
+  (this && this.__spreadArrays) ||
+  function() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+      for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++) r[k] = a[j]
+    return r
   }
-
-  function buildOptions(opacities) {
-    return (opacities || defaultOpacities).map(item => {
-      return { label: `${parseFloat(item) * 1000}`, value: parseFloat(item) }
-    })
-  }
-
-  function createUtility(target, option, color, className) {
-    function hexToRgb(hex) {
-      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-      return /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-        ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16),
-          }
-        : null
+Object.defineProperty(exports, '__esModule', { value: true })
+var Utils = require('./utils')
+var Constants = require('./constants')
+function default_1(_a) {
+  var opacities = _a.opacities,
+    variants = _a.variants,
+    control = _a.control
+  return function(_a) {
+    var theme = _a.theme,
+      e = _a.e,
+      addUtilities = _a.addUtilities
+    if (typeof theme !== 'function') {
+      return
     }
-
-    var hex = hexToRgb(color)
-
-    if (!hex) {
-      return false
-    }
-
-    var classStyle = {}
-    classStyle[className] = {}
-    classStyle[className][target.attr] = `rgba(${hex.r}, ${hex.g}, ${hex.b}, ${option.value})`
-    return classStyle
-  }
-
-  return ({ theme, e, addUtilities }) => {
-    var colors = typeof theme == 'function' ? theme('colors') : themeColors
-    var options = buildOptions(opacities)
-
-    var loopColors = (target, option, cols, prevKeys = null, newOption = true) => {
-      if (newOption) {
-        prevKeys = null
+    function recursiveUtilityBuild(targetAttr, opacityOption, colors, previousKeys, newOption) {
+      if (previousKeys === void 0) {
+        previousKeys = null
       }
-
-      return cols
-        ? Object.keys(cols).map((key, i) => {
-            if (typeof cols[key] === 'string') {
-              let classNames = '.' + target.label + '-'
-              if (prevKeys) {
-                prevKeys.map(prevKey => {
-                  classNames += prevKey + '-'
-                })
-              }
-              classNames += key + '-'
-              classNames += '' + option.label
-              return createUtility(target, option, cols[key], classNames)
-            }
-            return loopColors(
-              target,
-              option,
-              cols[key],
-              prevKeys ? [...prevKeys, key] : [key],
-              false
-            )
-          })
-        : []
+      if (newOption === void 0) {
+        newOption = true
+      }
+      if (newOption) previousKeys = null
+      return (Object.keys(colors) || []).map(function(colorKey, i) {
+        if (typeof colors[colorKey] === 'string') {
+          var className = Utils.buildClassName(targetAttr, previousKeys, colorKey, opacityOption)
+          var hex = Utils.hexToRgb(colors[colorKey])
+          return Utils.constructClassStyle(targetAttr, className, hex, opacityOption)
+        }
+        return recursiveUtilityBuild(
+          targetAttr,
+          opacityOption,
+          colors[colorKey],
+          previousKeys ? __spreadArrays(previousKeys, [colorKey]) : [colorKey],
+          false
+        )
+      })
     }
-
-    var classNames = flattenUtility(
-      targetGroups.map(target => {
-        return options.map(option => {
-          return loopColors(target, option, colors)
+    var opacityOptions = Utils.buildOpacityOptions(opacities)
+    var utilityArrayGroups = Constants.defaultAttributeTargets
+      .filter(function(utilityGroup) {
+        return (control ? control.excludedAttributes || [] : []).indexOf(utilityGroup.attr) < 0
+      })
+      .map(function(targetAttr) {
+        return opacityOptions.map(function(opacityOption) {
+          return recursiveUtilityBuild(targetAttr, opacityOption, theme('colors'))
         })
       })
-    ).filter(Boolean)
-
-    addUtilities(classNames, {
-      variants,
-    })
+    var utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
+    addUtilities(utilityArray, { variants: variants })
   }
 }
+module.exports = default_1

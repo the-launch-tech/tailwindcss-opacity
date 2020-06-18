@@ -20,6 +20,9 @@ In tailwind.config.js
     require('tailwindcss-opacity')({
       opacities: [0.1, 0.2, 0.4, 0.65, 0.85], // Opacities applied to theme('colors')
       variants: ['hover', 'focus', 'active', 'visited', 'disabled'], // Variants to apply opacities to
+      control: {
+        excludedAttributes: ['borderColor'] // Exclude borderColor from generation
+      }
     })
   ]
 }
@@ -28,6 +31,8 @@ In tailwind.config.js
 ## History
 
 - Npm Module, Open Source
+- `2.0.0` Integrate typescript
+- `2.0.0` Add excludable attributes
 
 ## Credits
 

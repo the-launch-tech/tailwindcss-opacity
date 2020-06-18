@@ -1,11 +1,10 @@
 {
   "name": "tailwindcss-opacity",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Opacity plugin for TailwindCSS",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "dev": "export NODE_ENV=development && webpack --config webpack.config.js --watch",
-    "prod": "export NODE_ENV=production && webpack --config webpack.config.prod.js"
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
@@ -27,5 +26,9 @@
     "Plugin"
   ],
   "author": "Daniel Griffiths",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "typescript": "^3.9.5"
+  }
 }

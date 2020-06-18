@@ -1,4 +1,7 @@
 .gitignore
-index.js
 LICENCE.md
 README.md
+CONCERNS.md
+/src
+/__tests__
+tsconfig.json

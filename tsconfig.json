@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strictNullChecks": true,
+    "noEmit": false,
+    "lib": ["ESNext"],
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationDir": "./",
+    "outDir": "./"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
