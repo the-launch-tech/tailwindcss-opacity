@@ -24,7 +24,11 @@
     "NodeJS",
     "Plugin",
     "TailwindCSS",
-    "Plugin"
+    "Plugin",
+    "TDD",
+    "Jest",
+    "Typescript",
+    "ES5"
   ],
   "author": "Daniel Griffiths",
   "license": "MIT",
