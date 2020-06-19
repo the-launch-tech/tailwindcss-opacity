@@ -42,6 +42,7 @@ In tailwind.config.js
 - `2.0.0` Add excludable attributes
 - `2.0.1` Example generated classNames added to readme
 - `2.0.1` Beginning unit testing with Jest and Typescript
+- `2.0.2` Completed unit tests for utils.ts
 
 ## Credits
 
