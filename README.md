@@ -12,6 +12,13 @@
 
 - `npm i --save tailwindcss-opacity`
 
+- Example generated classNames:
+  -- `.text-blue-100` (color attr, theme defined {blue: '#HEX'}, 0.1 opacity)
+  -- `.border-blue-1-450` (border-color attr, theme defined {blue: {1: '#HEX'}}, 0.45 opacity)
+  -- `.bg-light-blue-200` (background-color attr, theme defined {light: {blue: '#HEX'}}, 0.2 opacity)
+
+- Example config:
+
 ```
 In tailwind.config.js
 
@@ -30,9 +37,11 @@ In tailwind.config.js
 
 ## History
 
-- Npm Module, Open Source
-- `2.0.0` Integrate typescript
+- `1.0.0` Npm Module, Open Source, published
+- `2.0.0` Integrate Typescript
 - `2.0.0` Add excludable attributes
+- `2.0.1` Example generated classNames added to readme
+- `2.0.1` Beginning unit testing with Jest and Typescript
 
 ## Credits
 

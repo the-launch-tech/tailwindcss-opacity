@@ -1,6 +1,5 @@
 /node_modules
 package-lock.json
-__tests__
 index.js
 index.d.ts
 utils.js

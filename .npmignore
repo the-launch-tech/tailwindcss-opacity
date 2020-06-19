@@ -4,4 +4,5 @@ README.md
 CONCERNS.md
 /src
 /__tests__
+/node_modules
 tsconfig.json
