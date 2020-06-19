@@ -13,9 +13,21 @@
 - `npm i --save tailwindcss-opacity`
 
 - Example generated classNames:
-  -- `.text-blue-100` (color attr, theme defined {blue: '#HEX'}, 0.1 opacity)
-  -- `.border-blue-1-450` (border-color attr, theme defined {blue: {1: '#HEX'}}, 0.45 opacity)
-  -- `.bg-light-blue-200` (background-color attr, theme defined {light: {blue: '#HEX'}}, 0.2 opacity)
+
+* `.text-blue-100`
+  \*\* `text` = color attribute
+  \*\* `blue` = `theme('colors')`, `{ colors: { blue: '#XXXXXX' } }`
+  \*\* `100` = 0.1 opacity
+
+* `.border-blue-1-450`
+  \*\* `border` = border-color attribute
+  \*\* `1-blue` = `theme('colors')`, `{ colors: { blue: { 1: '#XXXXXX' } } }`
+  \*\* `450` = 0.45 opacity
+
+* `.bg-light-blue-200`
+  \*\* `bg` = background-color attribute
+  \*\* `light-blue` = `theme('colors')`, `{ colors: { light: { blue: '#XXXXXX' } } }`
+  \*\* `200` = 0.2 opacity
 
 - Example config:
 
