@@ -12,7 +12,7 @@
 
 - `npm i --save tailwindcss-opacity`
 
-- Example generated classNames:
+#### Example generated classNames
 
 - `.text-blue-100`
 
@@ -32,7 +32,7 @@
   - `light-blue` = `theme('colors')`, `{ colors: { light: { blue: '#XXXXXX' } } }`
   - `200` = 0.2 opacity
 
-- Example config:
+#### Example config
 
 ```
 In tailwind.config.js
