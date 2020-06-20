@@ -2,17 +2,17 @@
 
 ### Contribution to the TailwindCSS community and product.
 
-- Open source npm module for TailwindCSS.
+Open source NPM Module for TailwindCSS.
 
-- Provides easy generation of opacity classNames through the tailwind.config.js setup for use on color, borderColor, and backgroundColor attributes complementing your TailwindCSS theme('colors') configuration.
+Currently Tailwindcss only offers opacity at the element level, not the attribute level. This plugin provides that.
 
-- Currently tailwindcss only offers opacity at the element level, not the attribute level. This plugin provides that.
+Provides easy generation of opacity classNames through the tailwind.config.js setup for use on color, borderColor, and backgroundColor attributes complementing your TailwindCSS theme('colors') configuration.
 
 ---
 
 ## 2.x.x User Facing Changes
 
-1. `control` property on config object is options. View `Example Config` below to see potential usage.
+1. (non-breaking) `control` property on config object is optional. View `Example Config` below to see potential usage.
 
 ---
 
