@@ -74,32 +74,36 @@ Currently TailwindCSS only offers opacity at the element level, not the attribut
 ### 3. Example Generation
 
 ```css
+.text-yellow-850 {
+  color: rgba(..., 0.85);
+}
+
+.border-r-yellow-200 {
+  background-color: rgba(..., 0.2);
+}
+
+.bg-yellow-400 {
+  background-color: rgba(..., 0.4);
+}
+
 .text-red-0-850 {
-  color: rgba(250, 236, 236, 0.85);
+  color: rgba(..., 0.85);
 }
 
 .text-red-3-850 {
-  color: rgba(204, 54, 46, 0.85);
-}
-
-.text-green-0-850 {
-  color: rgba(242, 248, 243, 0.85);
+  color: rgba(..., 0.85);
 }
 
 .bg-red-4-400 {
-  background-color: rgba(167, 45, 38, 0.4);
+  background-color: rgba(..., 0.4);
 }
 
-.bg-yellow-2-400 {
-  background-color: rgba(249, 242, 187, 0.4);
-}
-
-.bg-yellow-3-400 {
-  background-color: rgba(136, 132, 102, 0.4);
+.text-green-0-850 {
+  color: rgba(..., 0.85);
 }
 
 .bg-blue-4-650 {
-  background-color: rgba(10, 22, 31, 0.65);
+  background-color: rgba(..., 0.65);
 }
 ```
 
@@ -123,16 +127,6 @@ pluginConfig?: {                    // Alternative config for granular control
   opacities?: number[]
   variants?: string[]
   excludedAttributes?: string[]
-  deepControl?: {                   // Available in v3.0.0
-    inclusiveToTheme: boolean
-    colorMap: {
-      [colorHex]: {
-        opacities?: number[]
-        variants?: string[]
-        excludedAttributes?: string[]
-      }
-    }
-  }
 }
 ```
 
@@ -142,6 +136,13 @@ pluginConfig?: {                    // Alternative config for granular control
 
 ```javascript
 /**
+ * Only use theme('colors') and theme('opacity')
+ */
+{
+  plugins: [require('tailwindcss-opacity')()]
+}
+
+/**
  * Config for more granular control
  */
 {
@@ -150,36 +151,6 @@ pluginConfig?: {                    // Alternative config for granular control
       opacities: [0.1, 0.2, 0.4, 0.65, 0.85], // Opacities applied to theme('colors')
       variants: ['hover', 'active', 'disabled'], // Variants to apply opacities to
       excludedAttributes: ['borderColor'], // Exclude borderColor from generation
-    }),
-  ]
-}
-
-/**
- * Only use theme('colors') and theme('opacity')
- */
-{
-  plugins: [require('tailwindcss-opacity')()]
-}
-
-/**
- * @unreleased for 3.0.0. Config for fully granular control (unreleased)
- */
-{
-  plugins: [
-    require('tailwindcss-opacity')({
-      deepControl: {
-        inclusiveToTheme: false,
-        colorMap: {
-          blue: {
-            opacities: [0.1, 0.2],
-            variants: ['hover'],
-          },
-          'red-1': {
-            opacities: [0.1, 0.3, 0.8],
-            excludedAttributes: ['fill', 'stroke'],
-          },
-        },
-      },
     }),
   ]
 }
