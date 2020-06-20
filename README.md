@@ -2,11 +2,9 @@
 
 ### Contribution to the TailwindCSS community and product.
 
-Open source NPM Module for TailwindCSS.
+Currently TailwindCSS only offers opacity at the element level, not the attribute level. This plugin provides that.
 
-Currently Tailwindcss only offers opacity at the element level, not the attribute level. This plugin provides that.
-
-Provides easy generation of opacity classNames through the tailwind.config.js setup for use on color, borderColor, and backgroundColor attributes complementing your TailwindCSS theme('colors') configuration.
+Provides easy generation of opacity classNames through the tailwind.config.js setup for use on `color`, `borderColor`, and `backgroundColor` attributes complementing your TailwindCSS `theme('colors')` configuration.
 
 ---
 
@@ -16,13 +14,15 @@ Provides easy generation of opacity classNames through the tailwind.config.js se
 
 ---
 
-## Use
+## Usage
+
+### 1. Installation
 
 - `npm i --save tailwindcss-opacity`
 
 ---
 
-#### Example generated classNames
+### 2. Example generated classNames
 
 - `.text-blue-100`
 
@@ -44,20 +44,34 @@ Provides easy generation of opacity classNames through the tailwind.config.js se
 
 ---
 
-#### Example config
+### 3. Example config in tailwind.config.js
+
+##### a. Configuration Types
+
+```typescript
+config: {
+  opacities: number[]
+  variants: ('hover' | 'focus' | 'active' | 'visited' | 'disabled')[]
+  control?: {
+    excludedAttributes?: ('color' | 'borderColor' | 'backgroundColor')[]
+  }
+}
+```
+
+---
+
+##### b. Example Configuration
 
 ```javascript
-In tailwind.config.js
-
 {
   plugins: [
     require('tailwindcss-opacity')({
       opacities: [0.1, 0.2, 0.4, 0.65, 0.85], // Opacities applied to theme('colors')
       variants: ['hover', 'focus', 'active', 'visited', 'disabled'], // Variants to apply opacities to
       control: {
-        excludedAttributes: ['borderColor'] // Exclude borderColor from generation
-      }
-    })
+        excludedAttributes: ['borderColor'], // Exclude borderColor from generation
+      },
+    }),
   ]
 }
 ```
