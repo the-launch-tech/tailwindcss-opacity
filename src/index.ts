@@ -3,13 +3,10 @@ import * as Constants from './constants'
 
 import { TailwindCSSOpacity } from './types'
 
-export default function({
-  opacities,
-  variants,
-  excludedAttributes,
-  includedAttributes,
-  deepControl,
-}: TailwindCSSOpacity.Params): TailwindCSSOpacity.Tailwind.PluginReturnFunction {
+export default function(
+  params: TailwindCSSOpacity.Params | undefined = {}
+): TailwindCSSOpacity.Tailwind.PluginReturnFunction {
+  const { opacities, variants, excludedAttributes, includedAttributes, deepControl } = params
   return ({ theme, e, addUtilities }: TailwindCSSOpacity.Tailwind.PluginParams): void => {
     const themeOpacity = theme('opacity')
     const themeColors = theme('colors')
@@ -45,10 +42,10 @@ export default function({
 
     let opacityOptions: TailwindCSSOpacity.Option[] = []
 
-    if (!opacities) {
-      opacityOptions = Utils.buildOpacityOptions(themeOpacity, true)
-    } else {
+    if (!!opacities) {
       opacityOptions = Utils.buildOpacityOptions(opacities)
+    } else {
+      opacityOptions = Utils.buildOpacityOptions(themeOpacity, true)
     }
 
     const utilityArrayGroups = Constants.defaultAttributeTargets
@@ -61,6 +58,8 @@ export default function({
 
     const utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
 
-    addUtilities(utilityArray, { variants })
+    addUtilities(utilityArray, {
+      variants: !!variants ? variants : ['hover', 'active', 'focus', 'disabled'],
+    })
   }
 }
