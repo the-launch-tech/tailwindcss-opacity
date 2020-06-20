@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-opacity",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Opacity plugin for TailwindCSS",
   "main": "./index.js",
   "scripts": {

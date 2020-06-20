@@ -2,9 +2,15 @@
 
 ### Contribution to the TailwindCSS community and product.
 
-Currently TailwindCSS only offers opacity at the element level, not the attribute level. This plugin provides granular or optional basic control over RGBA/"opacity" at the attribute level to complement your TailwindCSS `theme('colors')` and optionally your `theme('opacity')`configuration.
+Currently TailwindCSS only offers opacity at the element level, not the attribute level.
+
+This plugin provides granular, or optionally basic control over RGBA/"opacity" at the attribute level to complement your TailwindCSS `theme('colors')`.
+
+The optional basic control uses `theme('opacity')` values.
 
 ### Features
+
+- Simple option to generate RGBA attributes based solely on `theme('colors')` and `theme('opacity')`
 
 - Granular control through config so that your generated file doesn't explode with unused classes
 
@@ -26,11 +32,7 @@ Currently TailwindCSS only offers opacity at the element level, not the attribut
   8. Property: `stroke`, Prefix: `stroke`
   9. Property: `fill`, Prefix: `fill`
 
-- Simple option to generate RGBA attributes based solely on `theme('colors')` and `theme('opacity')`
-
-- _v3.0.0_ Super granular control at the individual color level, inclusive or exclusive to theme configuration for maximum specification
-
-  - Build color map so that `variants`, `opacities`, `excludedAttributes` can be independent for each color in `theme('colors')`.
+- _Unreleased 3.0.0_ Color specific control for super granularity.
 
 ---
 
