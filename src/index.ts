@@ -43,30 +43,24 @@ export default function({
       })
     }
 
-    if (!deepControl || deepControl.inclusiveToTheme) {
-      let opacityOptions: TailwindCSSOpacity.Option[] = []
+    let opacityOptions: TailwindCSSOpacity.Option[] = []
 
-      if (!opacities) {
-        opacityOptions = Utils.buildOpacityOptions(themeOpacity, true)
-      } else {
-        opacityOptions = Utils.buildOpacityOptions(opacities)
-      }
-
-      const utilityArrayGroups = Constants.defaultAttributeTargets
-        .filter(utilityGroup => (excludedAttributes || []).indexOf(utilityGroup.attr) < 0)
-        .map(targetAttr =>
-          opacityOptions.map(opacityOption =>
-            recursiveUtilityBuild(targetAttr, opacityOption, themeColors)
-          )
-        )
-
-      const utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
-
-      addUtilities(utilityArray, { variants })
-    } else if (Utils.validDeepControl(deepControl)) {
-      //
+    if (!opacities) {
+      opacityOptions = Utils.buildOpacityOptions(themeOpacity, true)
     } else {
-      console.warn('TailwindCSSOpacity: Invalid deepControl object. Check your configuration.')
+      opacityOptions = Utils.buildOpacityOptions(opacities)
     }
+
+    const utilityArrayGroups = Constants.defaultAttributeTargets
+      .filter(utilityGroup => (excludedAttributes || []).indexOf(utilityGroup.attr) < 0)
+      .map(targetAttr =>
+        opacityOptions.map(opacityOption =>
+          recursiveUtilityBuild(targetAttr, opacityOption, themeColors)
+        )
+      )
+
+    const utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
+
+    addUtilities(utilityArray, { variants })
   }
 }
