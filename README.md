@@ -6,11 +6,15 @@
 
 - Provides easy generation of opacity classNames through the tailwind.config.js setup for use on color, borderColor, and backgroundColor attributes complementing your TailwindCSS theme('colors') configuration.
 
-- Currently tailwindcss only offers opacity at the element level, not the attribute level.
+- Currently tailwindcss only offers opacity at the element level, not the attribute level. This plugin provides that.
+
+---
 
 ## Use
 
 - `npm i --save tailwindcss-opacity`
+
+---
 
 #### Example generated classNames
 
@@ -32,9 +36,11 @@
   - `light-blue` = `theme('colors')`, `{ colors: { light: { blue: '#XXXXXX' } } }`
   - `200` = 0.2 opacity
 
+---
+
 #### Example config
 
-```
+```javascript
 In tailwind.config.js
 
 {
@@ -50,6 +56,8 @@ In tailwind.config.js
 }
 ```
 
+---
+
 ## History
 
 - `1.0.0` Npm Module, Open Source, published
@@ -58,6 +66,8 @@ In tailwind.config.js
 - `2.0.1` Example generated classNames added to readme
 - `2.0.1` Beginning unit testing with Jest and Typescript
 - `2.0.2` Completed unit tests for utils.ts
+
+---
 
 ## Credits
 
