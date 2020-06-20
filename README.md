@@ -30,13 +30,14 @@ Currently TailwindCSS only offers opacity at the element level, not the attribut
 
 - _v3.0.0_ Super granular control at the individual color level, inclusive or exclusive to theme configuration for maximum specification
 
-  - Build color map so that `variants`, `opacities`, `includedAttributes`, `excludedAttributes` can be independent for each color in `theme('colors')`.
+  - Build color map so that `variants`, `opacities`, `excludedAttributes` can be independent for each color in `theme('colors')`.
 
 ---
 
 ## 2.x.x User Facing Changes
 
-1. (non-breaking) `control` property on config object is optional. View `Example Config` below to see potential usage.
+1. (non-breaking) `excludedAttributes` property on config object is optional. View examples below to see potential usage.
+2. (non-breaking) `deepControl` property on config object is optional. View examples below to see potential usage.
 
 ---
 
@@ -129,7 +130,6 @@ pluginConfig?: {                    // Alternative config for granular control
         opacities?: number[]
         variants?: string[]
         excludedAttributes?: string[]
-        includedAttributes?: string[]
       }
     }
   }
@@ -173,7 +173,6 @@ pluginConfig?: {                    // Alternative config for granular control
           blue: {
             opacities: [0.1, 0.2],
             variants: ['hover'],
-            includedAttributes: ['color', 'fill', 'stroke'],
           },
           'red-1': {
             opacities: [0.1, 0.3, 0.8],
