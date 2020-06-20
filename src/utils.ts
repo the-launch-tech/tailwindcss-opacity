@@ -20,25 +20,32 @@ export const constructClassStyle = (
   opacityOption: TailwindCSSOpacity.Option
 ): object | undefined => {
   if (!!hex) {
-    const classStyle = {}
-    classStyle[className] = {}
-    classStyle[className][
-      targetAttr.attr
-    ] = `rgba(${hex.r}, ${hex.g}, ${hex.b}, ${opacityOption.value})`
+    const classStyle = {
+      [className]: {
+        [targetAttr.attr]: `rgba(${hex.r}, ${hex.g}, ${hex.b}, ${opacityOption.value})`,
+      },
+    }
     return classStyle
   }
   return
 }
 
 export function buildOpacityOptions(
-  opacities: TailwindCSSOpacity.Params['opacities']
+  opacities: TailwindCSSOpacity.Params['opacities'] | object,
+  themeOpacity?: boolean
 ): TailwindCSSOpacity.Option[] {
-  return (opacities || Constants.defaultOpacities).map(
-    (item: number): TailwindCSSOpacity.Option => ({
-      label: `${typeof item === 'string' ? parseFloat(item) : item * 1000}`,
-      value: typeof item === 'string' ? parseFloat(item) : item,
-    })
-  )
+  const option = (item: number): TailwindCSSOpacity.Option => ({
+    label: `${item * 1000}`,
+    value: item,
+  })
+
+  return !themeOpacity
+    ? (Array.isArray(opacities) ? opacities : Constants.defaultOpacities).map(
+        (item: number): TailwindCSSOpacity.Option => option(item)
+      )
+    : !!opacities
+    ? Object.keys(opacities).map((key: string): TailwindCSSOpacity.Option => option(opacities[key]))
+    : []
 }
 
 export function hexToRgb(hex: string): TailwindCSSOpacity.Hex {
@@ -49,12 +56,11 @@ export function hexToRgb(hex: string): TailwindCSSOpacity.Hex {
   return null
 }
 
-export const flattenRecursive = (arr: any): any => {
-  return arr.reduce((a: any, b: any): any => {
-    return a.concat(Array.isArray(b) ? flattenRecursive(b) : b)
-  }, [])
-}
+export const flattenRecursive = (arr: any): any =>
+  arr.reduce((a: any, b: any): any => a.concat(Array.isArray(b) ? flattenRecursive(b) : b), [])
 
-export const flattenUtility = (array: any): any => {
-  return flattenRecursive(array)
+export const flattenUtility = (array: any): any => flattenRecursive(array)
+
+export const validDeepControl = (deepControl: TailwindCSSOpacity.ControlMap): boolean => {
+  return true
 }

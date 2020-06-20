@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-opacity",
-  "version": "2.0.9",
+  "version": "2.1.1",
   "description": "Opacity plugin for TailwindCSS",
   "main": "./index.js",
   "scripts": {
@@ -21,14 +21,17 @@
     "CSS",
     "SCSS",
     "PostCSS",
-    "NodeJS",
     "Plugin",
-    "TailwindCSS",
-    "Plugin",
-    "TDD",
-    "Jest",
-    "Typescript",
-    "ES5"
+    "tailwindcss",
+    "tailwind",
+    "opacity",
+    "postcss",
+    "css",
+    "scss",
+    "plugin",
+    "postcss",
+    "alpha",
+    "tailwindcss-plugin"
   ],
   "author": "Daniel Griffiths",
   "license": "MIT",

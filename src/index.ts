@@ -6,12 +6,13 @@ import { TailwindCSSOpacity } from './types'
 export default function({
   opacities,
   variants,
-  control,
+  excludedAttributes,
+  includedAttributes,
+  deepControl,
 }: TailwindCSSOpacity.Params): TailwindCSSOpacity.Tailwind.PluginReturnFunction {
   return ({ theme, e, addUtilities }: TailwindCSSOpacity.Tailwind.PluginParams): void => {
-    if (typeof theme !== 'function') {
-      return
-    }
+    const themeOpacity = theme('opacity')
+    const themeColors = theme('colors')
 
     function recursiveUtilityBuild(
       targetAttr: TailwindCSSOpacity.AttributeTarget,
@@ -42,21 +43,30 @@ export default function({
       })
     }
 
-    const opacityOptions: TailwindCSSOpacity.Option[] = Utils.buildOpacityOptions(opacities)
+    if (!deepControl || deepControl.inclusiveToTheme) {
+      let opacityOptions: TailwindCSSOpacity.Option[] = []
 
-    const utilityArrayGroups = Constants.defaultAttributeTargets
-      .filter(
-        utilityGroup =>
-          (control ? control.excludedAttributes || [] : []).indexOf(utilityGroup.attr) < 0
-      )
-      .map(targetAttr =>
-        opacityOptions.map(opacityOption =>
-          recursiveUtilityBuild(targetAttr, opacityOption, theme('colors'))
+      if (!opacities) {
+        opacityOptions = Utils.buildOpacityOptions(themeOpacity, true)
+      } else {
+        opacityOptions = Utils.buildOpacityOptions(opacities)
+      }
+
+      const utilityArrayGroups = Constants.defaultAttributeTargets
+        .filter(utilityGroup => (excludedAttributes || []).indexOf(utilityGroup.attr) < 0)
+        .map(targetAttr =>
+          opacityOptions.map(opacityOption =>
+            recursiveUtilityBuild(targetAttr, opacityOption, themeColors)
+          )
         )
-      )
 
-    const utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
+      const utilityArray = Utils.flattenUtility(utilityArrayGroups).filter(Boolean)
 
-    addUtilities(utilityArray, { variants })
+      addUtilities(utilityArray, { variants })
+    } else if (Utils.validDeepControl(deepControl)) {
+      //
+    } else {
+      console.warn('TailwindCSSOpacity: Invalid deepControl object. Check your configuration.')
+    }
   }
 }

@@ -7,19 +7,26 @@ export namespace TailwindCSSOpacity {
     variants: string[]
   }
 
+  export type ColorMap = {
+    [colorKey: string]: ColorDefinition
+  }
+
   export type ControlMap = {
+    inclusiveToTheme?: boolean
+    colorMap: ColorMap
+  }
+
+  export type Params = {
+    opacities?: number[]
+    variants?: string[]
     excludedAttributes?: string[]
+    includedAttributes?: string[]
+    deepControl?: ControlMap
   }
 
   export type Option = {
     label: string
     value: number
-  }
-
-  export type Params = {
-    opacities: number[]
-    variants: string[]
-    control?: ControlMap
   }
 
   export type AttributeTarget = {
