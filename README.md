@@ -10,6 +10,12 @@
 
 ---
 
+## 2.x.x User Facing Changes
+
+1. `control` property on config object is options. View `Example Config` below to see potential usage.
+
+---
+
 ## Use
 
 - `npm i --save tailwindcss-opacity`
