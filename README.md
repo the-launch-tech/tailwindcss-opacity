@@ -25,10 +25,10 @@ The optional basic control uses `theme('opacity')` values.
   1. Property: `color`, Prefix: `text`
   2. Property: `backgroundColor`, Prefix: `bg`
   3. Property: `borderColor`, Prefix: `border`
-  4. Property: `borderColorTop`, Prefix: `border-t`
-  5. Property: `borderColorRight`, Prefix: `border-r`
-  6. Property: `borderColorBottom`, Prefix: `border-b`
-  7. Property: `borderColorLeft`, Prefix: `border-l`
+  4. Property: `borderTopColor`, Prefix: `border-t`
+  5. Property: `borderRightColor`, Prefix: `border-r`
+  6. Property: `borderBottomColor`, Prefix: `border-b`
+  7. Property: `borderLeftColor`, Prefix: `border-l`
   8. Property: `stroke`, Prefix: `stroke`
   9. Property: `fill`, Prefix: `fill`
 
